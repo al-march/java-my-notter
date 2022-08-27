@@ -29,7 +29,7 @@ public class ProjectService {
         entity.setDescription(dto.getDescription());
 
         projectRepo.save(entity);
-        return projectMapper.oneToProject(entity);
+        return projectMapper.one(entity);
     }
 
     Project update(ProjectDto dto, Integer projectId, UserEntity user) {
@@ -41,7 +41,7 @@ public class ProjectService {
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         projectRepo.save(entity);
-        return projectMapper.oneToProject(entity);
+        return projectMapper.one(entity);
     }
 
     Project getOne(Integer projectId, UserEntity user) {
@@ -49,11 +49,11 @@ public class ProjectService {
         if (entity == null) {
             throw new EntityNotFoundException();
         }
-        return projectMapper.oneToProject(entity);
+        return projectMapper.one(entity);
     }
 
     List<Project> getAll(UserEntity user) {
         var entities = projectRepo.getAllByUser(user.getId());
-        return projectMapper.listToProjects(entities);
+        return projectMapper.list(entities);
     }
 }

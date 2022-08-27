@@ -10,12 +10,12 @@ import java.util.List;
 @Service
 public class ProjectMapper {
     Project
-    oneToProject(ProjectEntity entity) {
+    one(ProjectEntity entity) {
         return new Project(entity.getName(), entity.getDescription(), entity.getTasks());
     }
 
     List<Project>
-    listToProjects(List<ProjectEntity> entities) {
-        return Util.entityListToModel(entities, this::oneToProject);
+    list(List<ProjectEntity> entities) {
+        return Util.entityListToModel(entities, this::one);
     }
 }
