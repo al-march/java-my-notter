@@ -15,3 +15,38 @@ Content-Type: application/json
   "login": "alex@mail.com",
   "password": "123456"
 }
+
+> {% client.global.set("auth_token", response.body.token); %}
+
+###
+#################################################
+## Project
+#################################################
+###
+POST http://localhost:8080/api/v1/project
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "project"
+}
+
+###
+PUT http://localhost:8080/api/v1/project/2
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "project (update)",
+  "description": "new description"
+}
+
+###
+GET http://localhost:8080/api/v1/project/2
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+GET http://localhost:8080/api/v1/project
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
