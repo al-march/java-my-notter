@@ -86,3 +86,31 @@ Authorization: Bearer {{auth_token}}
 GET http://localhost:8080/api/v1/task
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
+
+
+###
+#################################################
+## Tag
+#################################################
+###
+POST http://localhost:8080/api/v1/tag
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "warning"
+}
+
+###
+PUT http://localhost:8080/api/v1/tag/37
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "error"
+}
+
+###
+GET http://localhost:8080/api/v1/tag
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
