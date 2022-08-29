@@ -3,9 +3,11 @@ package com.tracker.rest.project;
 import com.tracker.db.entity.ProjectEntity;
 import com.tracker.db.entity.UserEntity;
 import com.tracker.db.repository.ProjectRepo;
+import com.tracker.db.repository.TaskRepo;
 import com.tracker.exception.EntityNotFoundException;
 import com.tracker.rest.project.models.Project;
 import com.tracker.rest.project.models.ProjectDto;
+import com.tracker.rest.task.TaskMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +16,15 @@ import java.util.List;
 public class ProjectService {
 
     final ProjectRepo projectRepo;
+    final TaskRepo taskRepo;
     final ProjectMapper projectMapper;
+    final TaskMapper taskMapper;
 
-    public ProjectService(ProjectRepo projectRepo, ProjectMapper projectMapper) {
+    public ProjectService(ProjectRepo projectRepo, TaskRepo taskRepo, ProjectMapper projectMapper, TaskMapper taskMapper) {
         this.projectRepo = projectRepo;
+        this.taskRepo = taskRepo;
         this.projectMapper = projectMapper;
+        this.taskMapper = taskMapper;
     }
 
     Project create(ProjectDto dto, UserEntity user) {
@@ -49,7 +55,10 @@ public class ProjectService {
         if (entity == null) {
             throw new EntityNotFoundException();
         }
-        return projectMapper.one(entity);
+        var project = projectMapper.one(entity);
+        var tasks = taskRepo.getByProject(projectId);
+        project.setTasks(taskMapper.list(tasks));
+        return project;
     }
 
     List<Project> getAll(UserEntity user) {
