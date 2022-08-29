@@ -2,20 +2,12 @@ package com.tracker.rest.project;
 
 import com.tracker.db.entity.ProjectEntity;
 import com.tracker.rest.project.models.Project;
-import com.tracker.util.Util;
+import com.tracker.rest.util.mapper.BaseMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ProjectMapper {
-    Project
-    one(ProjectEntity entity) {
-        return new Project(entity.getName(), entity.getDescription(), entity.getTasks());
-    }
-
-    List<Project>
-    list(List<ProjectEntity> entities) {
-        return Util.entityListToModel(entities, this::one);
+public class ProjectMapper extends BaseMapper<ProjectEntity, Project> {
+    public Project one(ProjectEntity entity) {
+        return new Project(entity);
     }
 }
