@@ -11,7 +11,7 @@ import java.util.List;
 public class TaskMapper {
     Task
     one(TaskEntity entity) {
-        return new Task(entity.getName(), entity.getDescription());
+        return new Task(entity);
     }
 
     List<Task>
