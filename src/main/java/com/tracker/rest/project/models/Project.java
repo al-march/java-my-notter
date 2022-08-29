@@ -14,6 +14,7 @@ public class Project {
     Integer userId;
     String name;
     String description;
+    String prefix;
 
     @JsonInclude(Include.NON_NULL)
     List<Task> tasks;
@@ -22,5 +23,6 @@ public class Project {
         this.userId = entity.getUser().getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
+        this.prefix = entity.getPrefix();
     }
 }

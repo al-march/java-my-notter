@@ -62,8 +62,8 @@ Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "task",
-  "projectId": 2
+  "name": "generate task link_id",
+  "projectId": 34
 }
 
 ###
