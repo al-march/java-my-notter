@@ -21,7 +21,7 @@ public class TaskEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     ProjectEntity project;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     List<TagEntity> tags;
 
     @ManyToMany(fetch = FetchType.LAZY)

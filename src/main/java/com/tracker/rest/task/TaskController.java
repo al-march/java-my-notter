@@ -1,6 +1,7 @@
 package com.tracker.rest.task;
 
 import com.tracker.config.security.CustomUserDetails;
+import com.tracker.rest.task.models.CommentDto;
 import com.tracker.rest.task.models.Task;
 import com.tracker.rest.task.models.TaskDto;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -58,4 +59,13 @@ public class TaskController {
         return taskService.getAll(user.getUserEntity());
     }
 
+    @PostMapping("/{taskId}/comment")
+    public @ResponseBody
+    Task addComment(
+            @PathVariable Integer taskId,
+            @Valid @RequestBody CommentDto dto,
+            @AuthenticationPrincipal CustomUserDetails user
+    ) {
+        return taskService.setComment(taskId, dto, user.getUserEntity());
+    }
 }
