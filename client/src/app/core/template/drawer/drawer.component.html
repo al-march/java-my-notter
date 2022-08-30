@@ -1,0 +1,39 @@
+<div class="drawer drawer-mobile overflow-hidden h-full">
+  <input
+    type="checkbox"
+    class="drawer-toggle"
+    [checked]="drawer$ | async"
+  />
+  <div class="drawer-content flex flex-col">
+    <ng-content></ng-content>
+  </div>
+  <div class="drawer-side shadow-lg py-4">
+    <label (click)="toggle()" class="drawer-overlay"></label>
+    <ul class="menu overflow-y-auto w-72 bg-base-100 text-base-content">
+      <!-- Sidebar content here -->
+      <ul class="menu menu-compact flex flex-col p-0">
+        <li>
+          <a
+            routerLink="project"
+            class="flex gap-4"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact: true}"
+          >
+            Projects
+          </a>
+        </li>
+
+        <li>
+          <a
+            routerLink="tag"
+            class="flex gap-4"
+            [routerLinkActive]="['active']"
+          >
+            Tags
+          </a>
+        </li>
+      </ul>
+    </ul>
+
+  </div>
+</div>
