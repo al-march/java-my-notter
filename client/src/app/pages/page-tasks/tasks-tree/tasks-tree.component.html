@@ -1,0 +1,49 @@
+<ng-container *ngIf="task">
+  <div class="flex items-center w-full gap-2 p-1 px-4 mb-2 rounded">
+    <article class="flex flex-1 w-full justify-between">
+      <div class="flex flex-1 gap-2 items-start">
+
+        <div
+          class="row row-col flex-1"
+          [routerLink]="['.']"
+          [queryParams]="{taskId: task.id}"
+        >
+          <h4>{{task.name}}</h4>
+
+          <p class="opacity-75 text-xs truncate flex flex-col">
+            <span>{{task.description || 'Описания нет...'}}</span>
+          </p>
+
+          <div class="flex gap-2 items-center">
+            <nd-badge
+              *ngFor="let tag of task.tags"
+              size="xs"
+            >
+              {{tag.name}}
+            </nd-badge>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end">
+          <span *ngIf="task.children.length" class="text-sm opacity-90">
+            {{task.children.length}} <i class="fa-solid fa-list-check"></i>
+          </span>
+
+          <span class="opacity-75 text-xs truncate flex flex-col">
+            {{task.updatedAt | date:'dd.MM.YYYY'}}
+          </span>
+        </div>
+
+      </div>
+    </article>
+  </div>
+
+  <span class="divider m-0"></span>
+
+  <section *ngIf="task.children.length">
+    <app-tasks-tree
+      *ngFor="let t of task.children"
+      [task]="t">
+    </app-tasks-tree>
+  </section>
+</ng-container>

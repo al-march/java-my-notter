@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiRoute, BaseApiService } from '@app/core/services';
 import { TaskCreateDto, TaskDto } from '@app/core/dto';
 
-@ApiRoute('task')
+@ApiRoute('api/v1/task')
 @Injectable({
   providedIn: 'root'
 })
@@ -17,5 +17,9 @@ export class TaskService extends BaseApiService {
 
   get(id: number | string) {
     return this.http.get<TaskDto>(`${this.url}/${id}`);
+  }
+
+  getAll() {
+    return this.http.get<TaskDto[]>(`${this.url}`);
   }
 }

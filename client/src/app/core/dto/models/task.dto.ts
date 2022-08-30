@@ -9,7 +9,7 @@ export interface TaskDto {
   description: string;
 
   tags: TagDto[];
-  subTasks: TaskDto[];
+  children: TaskDto[];
 
   updatedAt: string;
   createdAt: string;

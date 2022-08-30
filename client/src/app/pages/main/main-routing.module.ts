@@ -5,7 +5,14 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    children: [
+      {
+        path: 'tasks',
+        loadChildren: () => import('../page-tasks/page-tasks.module')
+          .then(m => m.PageTasksModule)
+      }
+    ]
   }
 ];
 
@@ -13,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {}

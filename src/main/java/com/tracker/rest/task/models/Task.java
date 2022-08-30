@@ -1,12 +1,12 @@
 package com.tracker.rest.task.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.tracker.db.entity.ProjectEntity;
 import com.tracker.db.entity.TagEntity;
 import com.tracker.db.entity.TaskEntity;
 import com.tracker.util.Util;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -21,9 +21,10 @@ public class Task {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     List<Comment> comments;
 
-    String linkId;
-
     List<Task> children;
+
+    LocalDateTime updatedAt;
+    LocalDateTime createdAt;
 
     public Task(TaskEntity entity) {
         this.id = entity.getId();
@@ -33,10 +34,7 @@ public class Task {
         this.tags = entity.getTags();
         this.children = Util.entityListToModel(entity.getChildTasks(), Task::new);
 
-        generateLink(entity.getProject());
-    }
-
-    private void generateLink(ProjectEntity project) {
-        this.linkId = project.getPrefix() + "-" + this.id;
+        this.updatedAt = entity.getUpdatedAt();
+        this.createdAt = entity.getCreatedAt();
     }
 }

@@ -5,9 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <app-header></app-header>
 
-    <app-drawer class="flex-1">
-      <router-outlet></router-outlet>
-    </app-drawer>
+    <router-outlet></router-outlet>
   `,
   host: {
     'class': 'flex-1 h-screen flex flex-col'
