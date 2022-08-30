@@ -9,10 +9,10 @@ import { LoginDto, LoginResponseDto, RegistrationDto, UserDto } from '@app/core/
 export class AuthService extends BaseApiService {
 
   registration(dto: RegistrationDto) {
-    return this.http.post<UserDto>(`${this.url}/registration`, dto);
+    return this.http.post<UserDto>(`${this.url}/sign-up`, dto);
   }
 
   login(dto: LoginDto) {
-    return this.http.post<LoginResponseDto>(`${this.url}/login`, dto);
+    return this.http.post<LoginResponseDto>(`${this.url}/sign-in`, dto);
   }
 }

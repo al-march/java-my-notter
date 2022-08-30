@@ -27,13 +27,13 @@ export function ApiRoute(key: string) {
     }
 
     const proto = Object.getPrototypeOf(base);
-    const getUrl = Object.getOwnPropertyDescriptor(proto, 'url');
+    const url = Object.getOwnPropertyDescriptor(proto, 'url');
 
     const route = fixSlash(key);
 
     Object.defineProperty(base, 'url', {
       get() {
-        return getUrl!.get?.apply(this) + route;
+        return url!.get?.apply(this) + route;
       }
     });
   };
