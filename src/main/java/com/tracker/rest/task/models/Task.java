@@ -1,5 +1,7 @@
 package com.tracker.rest.task.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.tracker.db.entity.CommentEntity;
 import com.tracker.db.entity.ProjectEntity;
 import com.tracker.db.entity.TagEntity;
 import com.tracker.db.entity.TaskEntity;
@@ -15,6 +17,9 @@ public class Task {
     String name;
     String description;
     List<TagEntity> tags;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    List<CommentEntity> comments;
 
     String linkId;
 

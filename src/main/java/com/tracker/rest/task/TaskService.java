@@ -55,7 +55,9 @@ public class TaskService {
         if (entity == null) {
             throw new EntityNotFoundException();
         }
-        return taskMapper.one(entity);
+        var task = taskMapper.one(entity);
+        task.setComments(entity.getComments());
+        return task;
     }
 
     List<Task> getAll(UserEntity user) {

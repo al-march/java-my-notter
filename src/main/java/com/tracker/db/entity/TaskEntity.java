@@ -23,4 +23,7 @@ public class TaskEntity extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.DETACH)
     List<TagEntity> tags;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    List<CommentEntity> comments;
 }
