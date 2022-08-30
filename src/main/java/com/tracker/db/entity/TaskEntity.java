@@ -26,4 +26,10 @@ public class TaskEntity extends BaseEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     List<CommentEntity> comments;
+
+    @OneToMany(mappedBy = "parentTask", fetch = FetchType.LAZY)
+    List<TaskEntity> childTasks;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    TaskEntity parentTask;
 }

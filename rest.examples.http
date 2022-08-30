@@ -62,7 +62,7 @@ Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "another task",
+  "name": "fix parsing to model",
   "projectId": 34
 }
 
