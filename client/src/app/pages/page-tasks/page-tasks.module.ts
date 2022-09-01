@@ -5,17 +5,20 @@ import { PageTasksRoutingModule } from './page-tasks-routing.module';
 import { PageTasksComponent } from './page-tasks.component';
 import { TasksTreeComponent } from './tasks-tree/tasks-tree.component';
 import { BadgeModule } from '@ng-daisy/data-display';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskComponent } from './tasks-tree/task/task.component';
 
 @NgModule({
   declarations: [
     PageTasksComponent,
-    TasksTreeComponent
+    TasksTreeComponent,
+    TaskComponent,
   ],
   imports: [
     CommonModule,
     PageTasksRoutingModule,
-    BadgeModule
+    BadgeModule,
+    DragDropModule
   ]
 })
 export class PageTasksModule { }

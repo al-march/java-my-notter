@@ -2,6 +2,7 @@ import { TagDto } from '@app/core/dto';
 
 export interface TaskDto {
   id: number;
+  link: string;
   userId: number;
   projectId: number;
 

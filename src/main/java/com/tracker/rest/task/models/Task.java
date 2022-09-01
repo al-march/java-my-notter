@@ -16,6 +16,7 @@ public class Task {
     Integer projectId;
     String name;
     String description;
+    String link;
     List<TagEntity> tags;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,6 +34,7 @@ public class Task {
         this.description = entity.getDescription();
         this.tags = entity.getTags();
         this.children = Util.entityListToModel(entity.getChildTasks(), Task::new);
+        this.link = entity.getProject().getPrefix() + "-" + this.id;
 
         this.updatedAt = entity.getUpdatedAt();
         this.createdAt = entity.getCreatedAt();
