@@ -1,5 +1,8 @@
 <ng-container *ngIf="task">
-  <div class="task">
+  <div
+    class="task"
+    [class.active]="isActive$ | async"
+  >
 
     <article class="flex flex-1 w-full justify-between">
       <div class="flex flex-1 gap-2 items-start">
@@ -31,10 +34,6 @@
         </div>
 
         <div class="flex flex-col items-end">
-          <span *ngIf="task.children.length" class="text-sm opacity-90">
-            {{task.children.length}} <i class="fa-solid fa-list-check"></i>
-          </span>
-
           <span class="opacity-75 text-xs truncate flex flex-col">
             {{task.updatedAt | date:'dd.MM.YYYY'}}
           </span>

@@ -1,6 +1,5 @@
 <section class="p-4">
-
-  <div class="w-96 mx-auto">
+  <div class="mx-auto">
     <app-tasks-tree
       *ngFor="let task of tasks$ | async"
       [task]="task">
