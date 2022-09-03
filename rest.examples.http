@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "name": "Alex",
-  "email": "alex@mail.com",
+  "email": "a@m.com",
   "password": "123456"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:8080/auth/sign-in
 Content-Type: application/json
 
 {
-  "login": "alex@mail.com",
+  "login": "a@m.com",
   "password": "123456"
 }
 
@@ -20,75 +20,76 @@ Content-Type: application/json
 
 ###
 #################################################
-## Project
+## Category
 #################################################
 ###
-POST http://localhost:8080/api/v1/project
+POST http://localhost:8080/api/v1/category
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "project"
+  "name": "category",
+  "prefix": "cat"
 }
 
 ###
-PUT http://localhost:8080/api/v1/project/2
+PUT http://localhost:8080/api/v1/category/2
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "project (update)",
+  "name": "category (update)",
   "description": "new description"
 }
 
 ###
-GET http://localhost:8080/api/v1/project/2
+GET http://localhost:8080/api/v1/category/2
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 ###
-GET http://localhost:8080/api/v1/project
+GET http://localhost:8080/api/v1/category
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 
 ###
 #################################################
-## Task
+## Note
 #################################################
 ###
-POST http://localhost:8080/api/v1/task
+POST http://localhost:8080/api/v1/note
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "fix parsing to model",
-  "projectId": 34
+  "name": "Some new note",
+  "description": "first note's words..."
 }
 
 ###
-PUT http://localhost:8080/api/v1/task/35
+PUT http://localhost:8080/api/v1/note/35
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "task",
-  "projectId": 2,
+  "name": "note",
+  "categoryId": 2,
   "description": "updated description"
 }
 
 ###
-GET http://localhost:8080/api/v1/task/35
+GET http://localhost:8080/api/v1/note/4
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 ###
-GET http://localhost:8080/api/v1/task
+GET http://localhost:8080/api/v1/note
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 ###
-POST http://localhost:8080/api/v1/task/35/comment
+POST http://localhost:8080/api/v1/note/35/comment
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

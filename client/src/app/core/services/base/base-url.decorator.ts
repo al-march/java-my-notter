@@ -13,7 +13,7 @@ const fixSlash = (key: string) => {
  * Добавляет к хосту основного роута до API указанный маршрут
  *
  * @example
- * \ @RestRoute('project')
+ * \ @RestRoute('category')
  *
  * @returns
  * BaseApiService.url + key
