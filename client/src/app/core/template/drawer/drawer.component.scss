@@ -1,0 +1,7 @@
+.router-link {
+  @apply border-transparent border-l-4 flex items-center justify-center gap-4
+}
+
+.router-active {
+  @apply border-base-content border-l-4
+}

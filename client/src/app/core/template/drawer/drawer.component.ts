@@ -5,7 +5,10 @@ import { TemplateService } from '@app/core/template';
   selector: 'app-drawer',
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'flex-1'
+  }
 })
 export class DrawerComponent implements OnInit {
   drawer$ = this.template.drawer$;

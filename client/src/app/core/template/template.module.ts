@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { DrawerComponent } from './drawer/drawer.component';
 import { PageComponent } from './page/page.component';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
+import { LogoComponent } from '@app/components/logo';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CdkScrollableModule } from '@angular/cdk/scrolling';
   imports: [
     CommonModule,
     RouterModule,
-    CdkScrollableModule
+    CdkScrollableModule,
+    LogoComponent
   ],
   exports: [
     HeaderComponent,

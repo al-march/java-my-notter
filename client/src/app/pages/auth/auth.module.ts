@@ -9,16 +9,19 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    RegistrationComponent
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    FormsModule
-  ]
+    declarations: [
+        AuthComponent,
+        LoginComponent,
+        RegistrationComponent
+    ],
+    exports: [
+        LoginComponent
+    ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        FormsModule
+    ]
 })
 export class AuthModule {
 }
