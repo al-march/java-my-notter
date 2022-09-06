@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NoteDto } from '@app/core/dto';
 
 @Component({
@@ -18,6 +18,7 @@ export class NoteCardComponent implements OnInit {
   @Input()
   note?: NoteDto;
 
+  isDragging = false;
   transition = false;
   dragPosition = {x: 0, y: 0};
 
@@ -26,7 +27,12 @@ export class NoteCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDragDropped(_: CdkDragEnd) {
+  onDragStarted() {
+    this.isDragging = true;
+  }
+
+  onDragDropped() {
+    this.isDragging = false;
     this.transition = true;
     this.dragPosition = {x: 0, y: 0};
 

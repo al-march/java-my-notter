@@ -1,18 +1,23 @@
-<article
+<div
   #noteRef
-  *ngIf="note"
-  class="note"
-  [class.transition]="transition"
-
-  [cdkDragFreeDragPosition]="dragPosition"
-  (cdkDragEnded)="onDragDropped($event)"
   cdkDrag
+  [cdkDragFreeDragPosition]="dragPosition"
+  (cdkDragStarted)="onDragStarted()"
+  (cdkDragEnded)="onDragDropped()"
+  [class.transition-transform]="transition"
 >
-  <header>
-    <button class="btn btn-ghost btn-sm cursor-move" cdkDragHandle>
-      <i class="fa-solid fa-up-down-left-right"></i>
-    </button>
-  </header>
-  <p>{{note.name}}</p>
-  <p>{{note.description}}</p>
-</article>
+  <article
+    *ngIf="note"
+    class="note"
+    [class.dragging]="isDragging"
+  >
+    <header>
+      <button class="btn btn-ghost btn-sm cursor-move" cdkDragHandle>
+        <i class="fa-solid fa-up-down-left-right"></i>
+      </button>
+    </header>
+    <p>{{note.name}}</p>
+    <p>{{note.description}}</p>
+  </article>
+
+</div>

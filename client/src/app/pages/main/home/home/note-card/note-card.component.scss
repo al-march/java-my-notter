@@ -1,7 +1,11 @@
 .note {
-  @apply rounded p-4 bg-accent;
+  @apply rounded p-4 bg-accent transition-all;
 
-  &.transition {
-    @apply transition-transform
+  &.dragging {
+    @apply rotate-12;
+  }
+
+  &:active {
+    @apply bg-accent-focus shadow-xl;
   }
 }

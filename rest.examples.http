@@ -63,7 +63,7 @@ Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "Some new note",
+  "name": "The Second note",
   "description": "first note's words..."
 }
 
