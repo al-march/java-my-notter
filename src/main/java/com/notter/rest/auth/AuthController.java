@@ -1,5 +1,6 @@
 package com.notter.rest.auth;
 
+import com.notter.config.security.CustomUserDetails;
 import com.notter.config.security.jwt.JwtProvider;
 import com.notter.db.entity.UserEntity;
 import com.notter.exception.UserNotFoundException;
@@ -7,7 +8,9 @@ import com.notter.rest.auth.model.AuthSigninRequest;
 import com.notter.rest.auth.model.AuthSigninResponse;
 import com.notter.rest.auth.model.AuthSignupRequest;
 import com.notter.rest.auth.model.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +50,12 @@ public class AuthController {
 
         var u = User.toModel(userEntity);
         return new AuthSigninResponse(token, u);
+    }
+
+    @GetMapping("api/v1/profile")
+    public User getProfile(
+            @AuthenticationPrincipal CustomUserDetails user
+    ) {
+        return User.toModel(user.getUserEntity());
     }
 }
