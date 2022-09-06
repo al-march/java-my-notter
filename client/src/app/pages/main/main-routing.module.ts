@@ -7,11 +7,11 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      // {
-      //   path: 'tasks',
-      //   loadChildren: () => import('../page-tasks/page-tasks.module')
-      //     .then(m => m.PageTasksModule)
-      // }
+      {
+        path: '',
+        loadChildren: () => import('./home/home.module')
+          .then(m => m.HomeModule)
+      }
     ]
   }
 ];
