@@ -1,5 +1,5 @@
 <app-page>
-  <div class="max-w-5xl w-full flex-1 mx-auto">
+  <div class="max-w-5xl p-4 pb-0 w-full h-full flex flex-col gap-8 flex-1 mx-auto">
     <div class="flex">
       <button class="btn btn-ghost">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -7,16 +7,40 @@
       <input type="text" class="input w-full" placeholder="Search notes">
     </div>
 
-    <header *ngIf="profile$ | async as profile" class="my-8">
+    <header *ngIf="profile$ | async as profile">
       <h1 class="text-2xl pb-2">Hello, <strong>{{profile.name}}</strong>! 👋🏼</h1>
       <p class="opacity-75">All your notes are here, in one place!</p>
     </header>
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-8 gap-2">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
       <app-note-card
         *ngFor="let note of notes$ | async"
-        [note]="note">
+        [note]="note"
+        (dragMoved)="onNoteMoved($event)"
+        (dragDropped)="onNoteDropped($event)">
       </app-note-card>
+    </div>
+
+    <div class="flex-1"></div>
+
+    <div
+      #dropZone
+      [style.scale]="isDraggedToDropZone ? 1.2 : 0.8"
+      [style.opacity]="isDraggedToDropZone ? 1 : 0.4"
+      class="h-32 w-96 z-50 transition-all relative mx-auto flex flex-col items-center justify-center text-error"
+    >
+      <i class="fa-regular fa-trash-can text-2xl"></i>
+      <span class="text-xl font-bold">Drag to Delete Note</span>
+
+      <svg class="glow" [style.opacity]="isDraggedToDropZone ? 1 : 0" viewBox="0 0 1246 191" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="623" cy="583.5" rx="623" ry="583.5" fill="url(#paint0_radial_192_386)" fill-opacity="0.4"/>
+        <defs>
+          <radialGradient id="paint0_radial_192_386" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(623 583.5) rotate(90) scale(583.5 623)">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="#F7685C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
     </div>
   </div>
 </app-page>
