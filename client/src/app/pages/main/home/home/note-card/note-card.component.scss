@@ -2,7 +2,7 @@
   @apply rounded p-4 bg-accent transition-all;
 
   &.dragging {
-    @apply rotate-12;
+    @apply -rotate-12;
   }
 
   &:active {

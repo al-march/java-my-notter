@@ -1,14 +1,31 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragEnd, CdkDragMove, CdkDragStart, DragDropModule } from '@angular/cdk/drag-drop';
 import { NoteDto } from '@app/core/dto';
+
+export class NoteDragState<T> {
+  constructor(
+    public event: T,
+    public component: NoteCardComponent
+  ) {}
+}
 
 @Component({
   selector: 'app-note-card',
   standalone: true,
   imports: [CommonModule, DragDropModule],
   templateUrl: './note-card.component.html',
-  styleUrls: ['./note-card.component.scss']
+  styleUrls: ['./note-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteCardComponent implements OnInit {
 
@@ -17,6 +34,18 @@ export class NoteCardComponent implements OnInit {
 
   @Input()
   note?: NoteDto;
+
+  @Input()
+  inDropZone = false;
+
+  @Output()
+  dragStarted = new EventEmitter<NoteDragState<CdkDragStart>>();
+
+  @Output()
+  dragMoved = new EventEmitter<NoteDragState<CdkDragMove>>();
+
+  @Output()
+  dragDropped = new EventEmitter<NoteDragState<CdkDragEnd>>();
 
   isDragging = false;
   transition = false;
@@ -27,11 +56,21 @@ export class NoteCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDragStarted() {
+  onDragStarted($event: CdkDragStart) {
     this.isDragging = true;
+    const state = new NoteDragState($event, this);
+    this.dragStarted.emit(state);
   }
 
-  onDragDropped() {
+  onDragMoved($event: CdkDragMove) {
+    const state = new NoteDragState($event, this);
+    this.dragMoved.emit(state);
+  }
+
+  onDragDropped($event: CdkDragEnd) {
+    const state = new NoteDragState($event, this);
+    this.dragDropped.emit(state);
+
     this.isDragging = false;
     this.transition = true;
     this.dragPosition = {x: 0, y: 0};
