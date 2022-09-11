@@ -6,3 +6,14 @@
   right: -300px;
   bottom: 0;
 }
+
+
+
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  @apply w-72 h-72 border-accent border-dashed border-2 rounded;
+}

@@ -12,13 +12,35 @@
       <p class="opacity-75">All your notes are here, in one place!</p>
     </header>
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-      <app-note-card
-        *ngFor="let note of notes$ | async"
-        [note]="note"
-        (dragMoved)="onNoteMoved($event)"
-        (dragDropped)="onNoteDropped($event)">
-      </app-note-card>
+    <div
+      cdkDropList
+      cdkDropListSortingDisabled
+      class="note-list flex justify-center flex-wrap gap-4 overflow-y-scroll"
+    >
+      <div
+        *ngFor="let note of notes"
+        class="w-72 note-box relative"
+        cdkDrag
+        (cdkDragMoved)="onNoteMoved($event)"
+        (cdkDragDropped)="onNoteDropped(note.id)"
+      >
+        <app-note-card
+          [note]="note">
+        </app-note-card>
+
+        <div *cdkDragPlaceholder></div>
+
+        <div *cdkDragPreview>
+          <div
+            class="shadow-2xl -translate-x-32 -translate-y-4 transition-all"
+            [class.opacity-25]="isDraggedToDropZone"
+          >
+            <app-note-card
+              [note]="note">
+            </app-note-card>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="flex-1"></div>
@@ -32,7 +54,8 @@
       <i class="fa-regular fa-trash-can text-2xl"></i>
       <span class="text-xl font-bold">Drag to Delete Note</span>
 
-      <svg class="glow" [style.opacity]="isDraggedToDropZone ? 1 : 0" viewBox="0 0 1246 191" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="glow" [style.opacity]="isDraggedToDropZone ? 1 : 0" viewBox="0 0 1246 191" fill="none"
+           xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="623" cy="583.5" rx="623" ry="583.5" fill="url(#paint0_radial_192_386)" fill-opacity="0.4"/>
         <defs>
           <radialGradient id="paint0_radial_192_386" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(623 583.5) rotate(90) scale(583.5 623)">

@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { TemplateModule } from '@app/core/template';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NoteCardComponent } from './home/note-card/note-card.component';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { NoteCardComponent } from './home/note-card/note-card.component';
     HomeRoutingModule,
     TemplateModule,
     DragDropModule,
+    CdkScrollableModule,
     NoteCardComponent,
   ]
 })

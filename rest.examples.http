@@ -63,8 +63,8 @@ Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "name": "The Second note",
-  "description": "first note's words..."
+  "name": "Надо меньше есть",
+  "description": "Есть вообще надо бы мало, а то пухну"
 }
 
 ###

@@ -1,37 +1,12 @@
-<div
-  #noteRef
-  cdkDrag
-  [cdkDragFreeDragPosition]="dragPosition"
-  (cdkDragStarted)="onDragStarted($event)"
-  (cdkDragEnded)="onDragDropped($event)"
-  (cdkDragMoved)="onDragMoved($event)"
-  [class.transition-transform]="transition"
->
-  <article
-    *ngIf="note"
-    class="note"
-    [class.dragging]="isDragging"
-    [class.opacity-25]="inDropZone"
-  >
+<div class="h-full" *ngIf="note">
+  <article class="note">
     <header>
-      <button class="btn btn-ghost btn-sm cursor-move" cdkDragHandle>
-        <i class="fa-solid fa-up-down-left-right"></i>
-      </button>
+      <div class="h-1 w-16 mx-auto rounded mb-2 bg-white cursor-move"></div>
     </header>
 
-    <section
-      class="transition-all"
-      [style.height]="isDragging ? '20px' : '200px'"
-      [class.overflow-hidden]="isDragging"
-    >
+    <section class="py-1">
       <p>{{note.name}}</p>
-      <p
-        style="transition-delay: .2s"
-        class="transition-all"
-        [style.opacity]="isDragging ? 0 : 1"
-      >
-        {{note.description}}
-      </p>
+      <p>{{note.description}}</p>
     </section>
   </article>
 </div>

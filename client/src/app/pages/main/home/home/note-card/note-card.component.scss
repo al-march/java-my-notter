@@ -1,11 +1,4 @@
 .note {
-  @apply rounded p-4 bg-accent transition-all;
-
-  &.dragging {
-    @apply -rotate-12;
-  }
-
-  &:active {
-    @apply bg-accent-focus shadow-xl;
-  }
+  @apply rounded p-4 bg-accent h-full overflow-hidden w-72 h-72;
 }
+
